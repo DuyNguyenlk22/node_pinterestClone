@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import bcrypt, { hashSync } from "bcrypt";
+import bcrypt from "bcrypt";
 import { respsonseData } from "../config/response.js";
-import { createToken } from "../config/jwt.js";
+import { createRefToken, createToken } from "../config/jwt.js";
 
 const prisma = new PrismaClient();
 
@@ -17,7 +17,29 @@ export const login = async (req, res) => {
     if (checkUser) {
       if (bcrypt.compareSync(mat_khau, checkUser.mat_khau)) {
         let token = createToken({ nguoi_dung_id: checkUser.nguoi_dung_id });
-        respsonseData(res, "Login thành công", token, 200);
+
+        //Refresh token
+
+        let refToken = createRefToken({ nguoi_dung_id: checkUser.nguoi_dung_id });
+
+        await prisma.nguoi_dung.update({
+          where: {
+            nguoi_dung_id: checkUser.nguoi_dung_id,
+          },
+          data: {
+            ...checkUser,
+            refresh_token: refToken,
+          },
+        });
+
+        let dataUser = {
+          email: email,
+          ho_ten: checkUser.ho_ten,
+          tuoi: checkUser.tuoi,
+          anh_dai_dien: checkUser.anh_dai_dien,
+          accessToken: token,
+        };
+        respsonseData(res, "Login thành công", dataUser, 200);
       } else {
         respsonseData(res, "Mật khẩu không đúng", "", 400);
       }
@@ -58,4 +80,9 @@ export const signUp = async (req, res) => {
   } catch {
     respsonseData(res, "Đã có lỗi xảy ra...", "", 500);
   }
+};
+
+export const tokenRef = async (req, res) => {
+  try {
+  } catch {}
 };

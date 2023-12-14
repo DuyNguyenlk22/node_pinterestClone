@@ -8,5 +8,3 @@ app.use(express.json());
 app.use(cors());
 app.listen(8080);
 app.use(rootRoute);
-
-
