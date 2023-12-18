@@ -11,17 +11,17 @@ export const getInfoUser = async (req, res) => {
     let accessToken = decodeToken(token);
     console.log("😐 ~ getInfoUser ~ accessToken:👉", accessToken);
 
-    let info = await prisma.nguoi_dung.findFirst({
+    let info = await prisma.nguoi_dung.findUnique({
       where: {
         nguoi_dung_id: accessToken.nguoi_dung_id,
       },
       include: {
+        hinh_anh: true,
         luu_anh: {
           include: {
             hinh_anh: true,
           },
         },
-        hinh_anh: true,
       },
     });
     if (!info) {

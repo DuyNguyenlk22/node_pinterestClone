@@ -1,7 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { respsonseData } from "../config/response.js";
-import { createRefToken, createToken } from "../config/jwt.js";
+import {
+  checkRefToken,
+  checkToken,
+  createRefToken,
+  createToken,
+  decodeToken,
+} from "../config/jwt.js";
 
 const prisma = new PrismaClient();
 
@@ -16,11 +22,12 @@ export const login = async (req, res) => {
     });
     if (checkUser) {
       if (bcrypt.compareSync(mat_khau, checkUser.mat_khau)) {
-        let token = createToken({ nguoi_dung_id: checkUser.nguoi_dung_id });
+        let key = Date.now();
+        let token = createToken({ nguoi_dung_id: checkUser.nguoi_dung_id, key });
 
         //Refresh token
 
-        let refToken = createRefToken({ nguoi_dung_id: checkUser.nguoi_dung_id });
+        let refToken = createRefToken({ nguoi_dung_id: checkUser.nguoi_dung_id, key });
 
         await prisma.nguoi_dung.update({
           where: {
@@ -84,5 +91,70 @@ export const signUp = async (req, res) => {
 
 export const tokenRef = async (req, res) => {
   try {
-  } catch {}
+    let { token } = req.headers;
+
+    //Check token
+    let check = checkToken(token);
+    if (check != null && check.name !== "TokenExpiredError") {
+      res.status(401).send(check.name);
+      return;
+    }
+
+    let accessToken = decodeToken(token);
+    let getUser = await prisma.nguoi_dung.findFirst({
+      where: {
+        nguoi_dung_id: accessToken.nguoi_dung_id,
+      },
+    });
+    console.log("😐 ~ tokenRef ~ getUser:👉", getUser);
+
+    //check Ref Token
+    let checkRef = checkRefToken(getUser.refresh_token);
+    if (checkRef != null) {
+      res.status(401).send(check.name);
+      return;
+    }
+
+    //check code
+    let refToken = decodeToken(getUser.refresh_token);
+    if (accessToken.key != refToken.key) {
+      res.status(401).send(check.name);
+      return;
+    }
+
+    let newToken = createToken({
+      nguoi_dung_id: getUser.nguoi_dung_id,
+      key: refToken.key,
+    });
+
+    respsonseData(res, "", newToken, 200);
+  } catch {
+    respsonseData(res, "Đã có lỗi xảy ra...", "", 500);
+  }
+};
+
+export const logOut = async (req, res) => {
+  try {
+    let { token } = req.headers;
+    let accessToken = decodeToken(token);
+    let getUser = await prisma.nguoi_dung.findFirst({
+      where: {
+        nguoi_dung_id: accessToken.nguoi_dung_id,
+      },
+    });
+
+    await prisma.nguoi_dung.update({
+      where: {
+        nguoi_dung_id: getUser.nguoi_dung_id,
+      },
+      data: {
+        ...getUser,
+        refresh_token: "",
+      },
+    });
+
+    respsonseData(res, "", "", 200);
+  } catch {
+    respsonseData(res, "Đã có lỗi xảy ra...", "", 500);
+  }
 };

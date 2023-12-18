@@ -6,7 +6,7 @@ import { respsonseData } from "./response.js";
 export const createToken = (data) => {
   let token = jwt.sign(data, "BIMAT", {
     algorithm: "HS256",
-    expiresIn: "5d",
+    expiresIn: "10m",
   });
   return token;
 };
@@ -43,6 +43,6 @@ export const verifyToken = (req, res, next) => {
   if (check == null) {
     next();
   } else {
-    respsonseData(res, check.message, "", 401);
+    respsonseData(res, check.name, "", 401);
   }
 };
