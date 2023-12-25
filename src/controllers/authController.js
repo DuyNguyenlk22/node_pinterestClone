@@ -67,8 +67,6 @@ export const signUp = async (req, res) => {
         email: email,
       },
     });
-    console.log("😐 ~ signUp ~ checkUser:👉", checkUser);
-
     if (checkUser) {
       respsonseData(res, "Email đã tồn tại", "", 400);
       return;
@@ -106,7 +104,6 @@ export const tokenRef = async (req, res) => {
         nguoi_dung_id: accessToken.nguoi_dung_id,
       },
     });
-    console.log("😐 ~ tokenRef ~ getUser:👉", getUser);
 
     //check Ref Token
     let checkRef = checkRefToken(getUser.refresh_token);

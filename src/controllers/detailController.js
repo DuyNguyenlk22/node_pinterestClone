@@ -34,4 +34,3 @@ export const getImageComments = async (req, res) => {
         respsonseData(res, "Đã có lỗi...", "", 500);
     }
 };
-

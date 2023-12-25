@@ -1,11 +1,63 @@
 // npm install express multer
 // npm i compress-images
-
+// npm install pngquant-bin@6.0.1 --save
 import { PrismaClient } from "@prisma/client";
 import { decodeToken } from "../config/jwt.js";
 import { respsonseData } from "../config/response.js";
-
+import fs from 'fs';
+import bcrypt from "bcrypt";
+import compress_images from 'compress-images';
+import { createImg, updateInfo } from "../services/manageServices.js";
 const prisma = new PrismaClient();
+
+// -------------------------------
+// TODO:
+
+export const updateInfoUser = async (req, res) => {
+  try {
+    let { nguoi_dung_id } = decodeToken(req.headers.token);
+    nguoi_dung_id = parseInt(nguoi_dung_id);
+    let { mat_khau, ho_ten, tuoi } = req.body;
+
+    if (mat_khau === '') { mat_khau = null; }
+    if (ho_ten === '') { ho_ten = null; }
+    if (tuoi === '' || isNaN(tuoi)) { tuoi = null; }
+
+    let anh_dai_dien
+    if (req.file) { anh_dai_dien = req.file.filename; }
+    else anh_dai_dien = null;
+
+    const user = {
+      mat_khau,
+      ho_ten,
+      tuoi,
+      anh_dai_dien
+    };
+    const userUpdated = await updateInfo(nguoi_dung_id, user);
+    respsonseData(res, "Xử lý thành công", userUpdated, 200);
+  } catch {
+    respsonseData(res, "Đã có lỗi xảy ra...", "", 500);
+  }
+}
+
+export const uploadImg = async (req, res) => {
+  try {
+    let { nguoi_dung_id } = decodeToken(req.headers.token);
+    nguoi_dung_id = parseInt(nguoi_dung_id);
+    let { ten_hinh, mo_ta } = req.body;
+    let duong_dan = "/public/img/newFeed/" + req.file.filename;
+
+    const imgData = { ten_hinh, mo_ta, duong_dan, nguoi_dung_id };
+
+    const imgUploaded = await createImg(imgData);
+    respsonseData(res, "Xử lý thành công", imgUploaded, 200);
+  } catch {
+    respsonseData(res, "Đã có lỗi xảy ra...", "", 500);
+  }
+}
+// -------------------------------
+// TODO:
+
 
 export const getInfoUser = async (req, res) => {
   try {
@@ -90,27 +142,4 @@ export const deleteImgCreated = async (req, res) => {
   }
 };
 
-export const postImgAddNew = async (req, res) => {
-  try {
-    let { token } = req.headers;
-    let accessToken = decodeToken(token);
-    let { nguoi_dung_id } = accessToken;
-    nguoi_dung_id = parseInt(nguoi_dung_id);
-    let { ten_hinh, duong_dan, mo_ta } = req.file;
-    let imgInfo = {
-      ten_hinh,
-      duong_dan,
-      mo_ta,
-      nguoi_dung_id
-    };
 
-    // Save the image info to the database
-    const savedImgInfo = await prisma.hinh_anh.create({
-      data: imgInfo,
-    });
-
-    respsonseData(res, "Xử lý thành công", savedImgInfo, 200);
-  } catch {
-    respsonseData(res, "Đã có lỗi xảy ra...", nguoi_dung_id, 500);
-  }
-};
