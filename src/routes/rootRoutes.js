@@ -11,5 +11,4 @@ rootRoute.use("/auth", authRoute);
 rootRoute.use("/detail", detailRoute);
 rootRoute.use("/manage", manageRoute);
 
-// app.use('/images', imageController)
 export default rootRoute;

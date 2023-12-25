@@ -4,14 +4,9 @@
 import { PrismaClient } from "@prisma/client";
 import { decodeToken } from "../config/jwt.js";
 import { respsonseData } from "../config/response.js";
-import fs from 'fs';
-import bcrypt from "bcrypt";
-import compress_images from 'compress-images';
 import { createImg, updateInfo } from "../services/manageServices.js";
-const prisma = new PrismaClient();
 
-// -------------------------------
-// TODO:
+const prisma = new PrismaClient();
 
 export const updateInfoUser = async (req, res) => {
   try {
@@ -55,9 +50,6 @@ export const uploadImg = async (req, res) => {
     respsonseData(res, "Đã có lỗi xảy ra...", "", 500);
   }
 }
-// -------------------------------
-// TODO:
-
 
 export const getInfoUser = async (req, res) => {
   try {
