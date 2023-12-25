@@ -1,6 +1,7 @@
 // npm install express multer
 // npm i compress-images
 // npm install pngquant-bin@6.0.1 --save
+
 import { PrismaClient } from "@prisma/client";
 import { decodeToken } from "../config/jwt.js";
 import { respsonseData } from "../config/response.js";
@@ -28,6 +29,7 @@ export const updateInfoUser = async (req, res) => {
       tuoi,
       anh_dai_dien
     };
+
     const userUpdated = await updateInfo(nguoi_dung_id, user);
     respsonseData(res, "Xử lý thành công", userUpdated, 200);
   } catch {
