@@ -7,7 +7,7 @@ export const uploadImg = async (req, res) => {
         let { nguoi_dung_id } = decodeToken(req.headers.token);
         nguoi_dung_id = parseInt(nguoi_dung_id);
         let { ten_hinh, mo_ta } = req.body;
-        let duong_dan = "/public/img/newFeed/" + req.file.filename;
+        let duong_dan = req.file.filename;
 
         const imgData = {
             ten_hinh,

@@ -7,14 +7,14 @@ export const getDetail = async (nguoi_dung_id) => {
     const user = await prisma.nguoi_dung.findUnique({
         where: { nguoi_dung_id, }
     })
-    if (user) return user || null
+    if (user) return user || null;
 }
 
 export const updateInfo = async (nguoi_dung_id, user) => {
 
     if (user.mat_khau.length === 0) user.mat_khau = null;
     if (user.ho_ten.length === 0) user.ho_ten = null;
-    if (isNaN(+user.tuoi) || +user.tuoi <= 0) user.tuoi = null;
+    if (isNaN(+ user.tuoi) || + user.tuoi <= 0) user.tuoi = null;
     if (user.anh_dai_dien === undefined) user.anh_dai_dien = null;
 
     const userDetail = await getDetail(nguoi_dung_id);
