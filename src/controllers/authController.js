@@ -23,11 +23,15 @@ export const login = async (req, res) => {
     if (checkUser) {
       if (bcrypt.compareSync(mat_khau, checkUser.mat_khau)) {
         let key = Date.now();
-        let token = createToken({ nguoi_dung_id: checkUser.nguoi_dung_id, key });
+        let token = createToken({
+          nguoi_dung_id: checkUser.nguoi_dung_id,
+          key
+        });
 
-        //Refresh token
-
-        let refToken = createRefToken({ nguoi_dung_id: checkUser.nguoi_dung_id, key });
+        let refToken = createRefToken({
+          nguoi_dung_id: checkUser.nguoi_dung_id,
+          key
+        });
 
         await prisma.nguoi_dung.update({
           where: {
@@ -46,15 +50,15 @@ export const login = async (req, res) => {
           anh_dai_dien: checkUser.anh_dai_dien,
           accessToken: token,
         };
-        respsonseData(res, "Login thành công", dataUser, 200);
+        respsonseData(res, "Login successfully", dataUser, 200);
       } else {
-        respsonseData(res, "Mật khẩu không đúng", "", 400);
+        respsonseData(res, "Wrong password", "", 400);
       }
     } else {
-      respsonseData(res, "Email không đúng", "", 400);
+      respsonseData(res, "Wrong or not existed email adress", "", 400);
     }
   } catch {
-    respsonseData(res, "Đã có lỗi xảy ra...", "", 500);
+    respsonseData(res, "Unexpected Error", "", 500);
   }
 };
 
@@ -68,7 +72,7 @@ export const signUp = async (req, res) => {
       },
     });
     if (checkUser) {
-      respsonseData(res, "Email đã tồn tại", "", 400);
+      respsonseData(res, "Email had been selected, please try another email or login again", "", 400);
       return;
     }
 
@@ -81,9 +85,9 @@ export const signUp = async (req, res) => {
     };
 
     await prisma.nguoi_dung.create({ data: newData });
-    respsonseData(res, "Đăng ký thành công", "", 200);
+    respsonseData(res, "Sign Up successfully", "", 200);
   } catch {
-    respsonseData(res, "Đã có lỗi xảy ra...", "", 500);
+    respsonseData(res, "Unexpected Error", "", 500);
   }
 };
 
@@ -126,7 +130,7 @@ export const tokenRef = async (req, res) => {
 
     respsonseData(res, "", newToken, 200);
   } catch {
-    respsonseData(res, "Đã có lỗi xảy ra...", "", 500);
+    respsonseData(res, "Unexpected Error", "", 500);
   }
 };
 
@@ -152,6 +156,6 @@ export const logOut = async (req, res) => {
 
     respsonseData(res, "", "", 200);
   } catch {
-    respsonseData(res, "Đã có lỗi xảy ra...", "", 500);
+    respsonseData(res, "Unexpected Error", "", 500);
   }
 };
