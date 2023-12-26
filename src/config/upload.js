@@ -1,7 +1,7 @@
 import multer from 'multer';
 
 let storageAvatar = multer.diskStorage({
-    destination: process.cwd() + "/public/img/avatar",
+    destination: process.cwd() + "/public/inputImg/avatar",
     filename: (req, file, callback) => {
         let newName = new Date().getTime() + "_" + file.originalname;
         callback(null, newName);
@@ -15,7 +15,7 @@ let storageNewFeed = multer.diskStorage({
     }
 })
 let storageComment = multer.diskStorage({
-    destination: process.cwd() + "/public/img/comment",
+    destination: process.cwd() + "/public/inputImg/comment",
     filename: (req, file, callback) => {
         let newName = new Date().getTime() + "_" + file.originalname;
         callback(null, newName);

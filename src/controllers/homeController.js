@@ -7,9 +7,9 @@ export const getAllImg = async (req, res) => {
   try {
     let data = await prisma.hinh_anh.findMany();
 
-    respsonseData(res, "Xử lý thành công", data, 200);
+    respsonseData(res, "Successfully handled", data, 200);
   } catch {
-    respsonseData(res, "Đã có lỗi...", "", 500);
+    respsonseData(res, "Unexpected Error", "", 500);
   }
 };
 
@@ -25,8 +25,8 @@ export const searchImgByName = async (req, res) => {
       },
     });
 
-    respsonseData(res, "Xử lý thành công", dataSearch, 200);
+    respsonseData(res, "Successfully handled", dataSearch, 200);
   } catch {
-    respsonseData(res, "Đã có lỗi...", "", 500);
+    respsonseData(res, "Unexpected Error", "", 500);
   }
 };
