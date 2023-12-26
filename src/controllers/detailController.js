@@ -42,20 +42,28 @@ export const getImageIsSaved = async (req, res) => {
     try {
         let hinh_id = parseInt(req.params.hinh_id);
 
-        let data = await prisma.luu_anh.findMany({
+        let { nguoi_dung_id } = decodeToken(req.headers.token);
+        nguoi_dung_id = parseInt(nguoi_dung_id);
+
+        let data = await prisma.luu_anh.findFirst({
             where: {
-                hinh_id,
+                AND: {
+                    hinh_id,
+                    nguoi_dung_id,
+                }
             },
         });
-        if (data.length === 0) {
-            respsonseData(res, "No data match your search", null, 404);
+
+        if (!data) {
+            respsonseData(res, "Image have not saved yet", false, 404);
         } else {
-            respsonseData(res, "Successfully handled", data, 200);
+            respsonseData(res, "Image saved", true, 200);
         }
-    } catch {
+    } catch (error) {
         respsonseData(res, "Unexpected Error", "", 500);
     }
 };
+
 
 export const addComment = async (req, res) => {
     try {
@@ -81,7 +89,7 @@ export const addComment = async (req, res) => {
             }
         );
 
-        let anh_dinh_kem = "/public/img/comment/" + req.file.filename;
+        let anh_dinh_kem = req.file.filename;
         let ngay_binh_luan = new Date().toISOString();
 
         const commentData = {
