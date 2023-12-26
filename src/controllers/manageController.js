@@ -123,7 +123,7 @@ export const getListImgCreated = async (req, res) => {
 export const deleteImgCreated = async (req, res) => {
   try {
     let { hinh_id } = req.body;
-
+   
     await prisma.hinh_anh.delete({
       where: {
         hinh_id,
