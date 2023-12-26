@@ -1,0 +1,7 @@
+File from: [E:\ThaoHuynh\Documents_Studying\Docs_CyberSoft\Docs-IT-Backend Node Js\NodeJS\Capstone\capstone_node_pinterest3\capstone_node_pinterest/public/inputImg/comment/1703582980253_wallpapersden.com_deer-staring-at-sunset-anime_2560x1440.jpg]
+
+File to: [E:\ThaoHuynh\Documents_Studying\Docs_CyberSoft\Docs-IT-Backend Node Js\NodeJS\Capstone\capstone_node_pinterest3\capstone_node_pinterest/public/img/comment/1703582980253_wallpapersden.com_deer-staring-at-sunset-anime_2560x1440.jpg]
+
+Compression algorithm: [-]
+
+Description: File does not exist!
