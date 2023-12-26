@@ -64,7 +64,6 @@ export const getImageIsSaved = async (req, res) => {
     }
 };
 
-
 export const addComment = async (req, res) => {
     try {
         let { nguoi_dung_id } = decodeToken(req.headers.token);
@@ -73,7 +72,7 @@ export const addComment = async (req, res) => {
         let { noi_dung, hinh_id } = req.body;
         hinh_id = parseInt(hinh_id);
         compress_images(
-            process.cwd() + "/public/inputImg/comment/" + req.file.filename,
+            process.cwd() + "/public/img/" + req.file.filename,
             process.cwd() + "/public/img/comment/",
             { compress_force: false, statistic: true, autoupdate: true }, false,
             { jpg: { engine: "mozjpeg", command: ["-quality", "10"] } },
@@ -82,7 +81,7 @@ export const addComment = async (req, res) => {
             { gif: { engine: "gifsicle", command: ["--colors", "64", "--use-col=web"] } },
             function (error, completed) {
                 if (completed) {
-                    fs.unlinkSync(process.cwd() + "/public/inputImg/comment/" + req.file.filename);
+                    fs.unlinkSync(process.cwd() + "/public/img/" + req.file.filename);
                 } else {
                     console.error("Image compression failed:", error);
                 }
