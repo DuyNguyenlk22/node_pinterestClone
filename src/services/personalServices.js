@@ -39,6 +39,7 @@ export const updateInfo = async (nguoi_dung_id, user) => {
                 anh_dai_dien: user.anh_dai_dien === null ? userDetail.anh_dai_dien : user.anh_dai_dien
             }
         });
+        
         return userUpdated;
     } else return null;
 }

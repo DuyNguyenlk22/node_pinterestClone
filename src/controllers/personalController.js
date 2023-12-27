@@ -5,7 +5,7 @@ import { respsonseData } from "../config/response.js";
 import { updateInfo } from '../services/personalServices.js';
 
 export const updateInfoUser = async (req, res) => {
-    // try {
+    try {
         let { nguoi_dung_id } = decodeToken(req.headers.token);
         nguoi_dung_id = parseInt(nguoi_dung_id);
         let { mat_khau, ho_ten, tuoi } = req.body;
@@ -38,8 +38,8 @@ export const updateInfoUser = async (req, res) => {
 
         const userUpdated = await updateInfo(nguoi_dung_id, user);
         respsonseData(res, "Successfully handled", userUpdated, 200);
-    // } catch {
-    //     respsonseData(res, "Unexpected Error", "", 500);
-    // }
+    } catch {
+        respsonseData(res, "Unexpected Error", "", 500);
+    }
 }
 

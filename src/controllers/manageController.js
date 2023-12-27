@@ -74,17 +74,27 @@ export const getListImgCreated = async (req, res) => {
 export const deleteImgCreated = async (req, res) => {
   try {
     let { hinh_id } = req.body;
-
-    await prisma.hinh_anh.delete({
+    const data = await prisma.hinh_anh.findFirst({
       where: {
         hinh_id,
       },
-    });
+    })
+    if (data) {
+      await prisma.hinh_anh.delete({
+        where: {
+          hinh_id,
+        },
+      });
 
-    respsonseData(res, "Image Deleted", "", 200);
+      respsonseData(res, "Image Deleted", "", 200);
+    }
+    else {
+      respsonseData(res, "Image is not existed or have been deleted", "", 404);
+    }
   } catch {
     respsonseData(res, "Unexpected Error", "", 500);
   }
 };
+
 
 
