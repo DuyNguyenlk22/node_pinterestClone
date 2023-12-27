@@ -71,11 +71,23 @@ export const signUp = async (req, res) => {
         email: email,
       },
     });
+
     if (checkUser) {
-      respsonseData(res, "Email had been selected, please try another email or login again", "", 400);
+      respsonseData(res, "Email had been selected, please try another email", "", 400);
       return;
     }
-
+    if (email === "") {
+      respsonseData(res, "Error...", "", 500)
+      return
+    } else {
+      if (mat_khau === "") {
+        respsonseData(res, "Error...", "", 500)
+        return 
+      }
+    }
+    if (tuoi <= 0 || tuoi === "") tuoi = null 
+    if (ho_ten === "") ho_ten = null 
+    
     let newData = {
       email,
       mat_khau: bcrypt.hashSync(mat_khau, 10),

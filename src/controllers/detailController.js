@@ -7,14 +7,14 @@ import compress_images from 'compress-images';
 const prisma = new PrismaClient();
 
 export const getImageDetail = async (req, res) => {
-    try {
-        let hinh_id = parseInt(req.params.hinh_id);
+  try {
+    let hinh_id = parseInt(req.params.hinh_id);
 
-        let data = await prisma.hinh_anh.findUnique({
-            where: {
-                hinh_id,
-            },
-        });
+    let data = await prisma.hinh_anh.findUnique({
+      where: {
+        hinh_id,
+      },
+    });
 
         respsonseData(res, "Successfully handled", data, 200);
     } catch {
@@ -23,14 +23,14 @@ export const getImageDetail = async (req, res) => {
 };
 
 export const getImageComments = async (req, res) => {
-    try {
-        let hinh_id = parseInt(req.params.hinh_id);
+  try {
+    let hinh_id = parseInt(req.params.hinh_id);
 
-        let data = await prisma.binh_luan.findMany({
-            where: {
-                hinh_id,
-            },
-        });
+    let data = await prisma.binh_luan.findMany({
+      where: {
+        hinh_id,
+      },
+    });
 
         respsonseData(res, "Successfully handled", data, 200);
     } catch {
@@ -39,8 +39,8 @@ export const getImageComments = async (req, res) => {
 };
 
 export const getImageIsSaved = async (req, res) => {
-    try {
-        let hinh_id = parseInt(req.params.hinh_id);
+  try {
+    let hinh_id = parseInt(req.params.hinh_id);
 
         let { nguoi_dung_id } = decodeToken(req.headers.token);
         nguoi_dung_id = parseInt(nguoi_dung_id);
