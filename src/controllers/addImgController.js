@@ -3,7 +3,7 @@ import { respsonseData } from "../config/response.js";
 import { createImg } from "../services/addImgServices.js";
 
 export const uploadImg = async (req, res) => {
-    try {
+    // try {
         let { nguoi_dung_id } = decodeToken(req.headers.token);
         nguoi_dung_id = parseInt(nguoi_dung_id);
         let { ten_hinh, mo_ta } = req.body;
@@ -18,8 +18,8 @@ export const uploadImg = async (req, res) => {
 
         const imgUploaded = await createImg(imgData);
         respsonseData(res, "Successfully handled", imgUploaded, 200);
-    } catch {
-        respsonseData(res, "Unexpected Error", "", 500);
-    }
+    // } catch {
+    //     respsonseData(res, "Unexpected Error", "", 500);
+    // }
 }
 

@@ -1,0 +1,489 @@
+{
+	"info": {
+		"_postman_id": "9a3aa7e4-1077-4931-90ae-ad1f4ff56587",
+		"name": "pinterest_capstone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29097390"
+	},
+	"item": [
+		{
+			"name": "Trang đăng ký , đăng nhập",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"test1234@gmail.com\",\r\n    \"mat_khau\" : \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/auth/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test4@gmail.com\",\r\n    \"mat_khau\" : \"\",\r\n    \"ho_ten\": \"\",\r\n    \"tuoi\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/auth/signup",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyNCwiaWF0IjoxNzAyODc1NDgzLCJleHAiOjE3MDI4NzYwODN9.dcCDga1wOchvxrJ-SxutLhDFVyN6gL13Az2TM4FX6as",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/auth/token-ref",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"auth",
+								"token-ref"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trang chủ",
+			"item": [
+				{
+					"name": "Get-List-Img",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/get-all-img",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"get-all-img"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search-img",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyNCwiaWF0IjoxNzAyNTM5NTg3LCJleHAiOjE3MDI1Mzk4ODd9.oqNBkJWxAQSFjtzuabWROYRaLm75iQN6Bir66UY2Oso",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/search-img/family",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"search-img",
+								"family"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trang quản lý",
+			"item": [
+				{
+					"name": "Get-info-user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNjcyNTQ1MDA1LCJpYXQiOjE3MDM2NzI1NDUsImV4cCI6MTcwMzY3MzE0NX0.wkVlpAUKDe4hpkMwEdrqJp2Nn9OP28b030znIc1Ri2o",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/manage/get-info-user",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"manage",
+								"get-info-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-ListImg-saved",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAyODg4NzU1MTkxLCJpYXQiOjE3MDI4ODg3NTUsImV4cCI6MTcwMjg4OTM1NX0.Nwnt4axdEZH6nnwmki1cd3fMy46ugx7Mm1aG17XJ-Ug",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/manage/listImg-saved",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"manage",
+								"listImg-saved"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-ListImg-Created",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNjcxNzA3NjQ4LCJpYXQiOjE3MDM2NzE3MDcsImV4cCI6MTcwMzY3MjMwN30.i2Odzq4YaqfxUFWLspVK6lkd1SNOvgg2Q1XltAPeDOw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/manage/listImg-created",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"manage",
+								"listImg-created"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-Img-Created",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNjc1MTYwNDAwLCJpYXQiOjE3MDM2NzUxNjAsImV4cCI6MTcwMzY3NTc2MH0.0hNBEy5PnVnESdNdwwTli_2XTMB3QSSd_ZBsrvTtqbE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hinh_id\" : 60\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/manage/delete-img-created",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"manage",
+								"delete-img-created"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trang chi tiết hình ảnh",
+			"item": [
+				{
+					"name": "Get Img Detail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/detail/get-img-detail/4",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"detail",
+								"get-img-detail",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Img Comment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/detail/get-img-comment/58",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"detail",
+								"get-img-comment",
+								"58"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Is Img Saved",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNTgyMzcwNDcwLCJpYXQiOjE3MDM1ODIzNzAsImV4cCI6MTcwMzU4Mjk3MH0.DxO6Ws4Sey2tNWVchJWrvUVH53WhSVYS9Rr334ngVoQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{domain}}/detail/get-img-is-saved/10",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"detail",
+								"get-img-is-saved",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add-comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNjcyMTE3OTYyLCJpYXQiOjE3MDM2NzIxMTcsImV4cCI6MTcwMzY3MjcxN30.j7NTRrt3i_MNZI0zrEhjhDGkQaWlE68Fv_MCfzFS7dk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "noi_dung",
+									"value": "tes1",
+									"type": "text"
+								},
+								{
+									"key": "anh_dinh_kem",
+									"type": "file",
+									"src": "/C:/Users/nguye/OneDrive/Desktop/images/logoD.png"
+								},
+								{
+									"key": "hinh_id",
+									"value": "58",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/detail/add-comment",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"detail",
+								"add-comment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trang thêm ảnh",
+			"item": [
+				{
+					"name": "Upload Img",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNjcyOTk3Mjc2LCJpYXQiOjE3MDM2NzI5OTcsImV4cCI6MTcwMzY3MzU5N30.vN2pGs_UNDFOz0nQlX_8Waz6Am_8W8EVa_WawMXwrCA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "ten_hinh",
+									"value": "a cat",
+									"type": "text"
+								},
+								{
+									"key": "mo_ta",
+									"value": "2 cat sitting on w plants",
+									"type": "text"
+								},
+								{
+									"key": "duong_dan",
+									"type": "file",
+									"src": "/C:/Users/nguye/OneDrive/Desktop/images/logoD.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/addImg/upload-img",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"addImg",
+								"upload-img"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trang cập nhật thông tin",
+			"item": [
+				{
+					"name": "Update User Info",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNTgwMzc2MTM4LCJpYXQiOjE3MDM1ODAzNzYsImV4cCI6MTcwMzU4MDk3Nn0.xyvWB8iY31xhoSSoAAXNRs38OAF_NRLaBrjyOcmAXNg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "test26@gmail.com",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "mat_khau",
+									"value": "",
+									"type": "text"
+								},
+								{
+									"key": "anh_dai_dien",
+									"type": "file",
+									"src": "/C:/Users/nguye/OneDrive/Desktop/images/meo.jpg"
+								},
+								{
+									"key": "tuoi",
+									"value": "18",
+									"type": "text"
+								},
+								{
+									"key": "ho_ten",
+									"value": "Duy",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{domain}}/personal/update-user-info",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"personal",
+								"update-user-info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "http://localhost:8080"
+		}
+	]
+}
