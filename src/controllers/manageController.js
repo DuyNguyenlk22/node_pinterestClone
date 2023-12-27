@@ -72,19 +72,17 @@ export const getListImgCreated = async (req, res) => {
 };
 
 export const deleteImgCreated = async (req, res) => {
-  try {
-    let { hinh_id } = req.body;
-   
-    await prisma.hinh_anh.delete({
-      where: {
-        hinh_id,
-      },
-    });
+  // try {
+  let { hinh_id } = req.body;
 
-    respsonseData(res, "Image Deleted", "", 200);
-  } catch {
-    respsonseData(res, "Unexpected Error", "", 500);
-  }
+  await prisma.hinh_anh.delete({
+    where: {
+      hinh_id,
+    },
+  });
+
+  respsonseData(res, "Image Deleted", "", 200);
+  // } catch {
+  //   respsonseData(res, "Unexpected Error", "", 500);
+  // }
 };
-
-
