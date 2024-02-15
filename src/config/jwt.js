@@ -6,7 +6,7 @@ import { respsonseData } from "./response.js";
 export const createToken = (data) => {
   let token = jwt.sign(data, "BIMAT", {
     algorithm: "HS256",
-    expiresIn: "10m",
+    expiresIn: "10d",
   });
   return token;
 };
