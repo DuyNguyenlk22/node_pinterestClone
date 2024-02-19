@@ -72,56 +72,30 @@ export const getListImgCreated = async (req, res) => {
 };
 
 export const deleteImgCreated = async (req, res) => {
-  // try {
-  let { hinh_id } = req.body;
-  console.log("😐 ~ deleteImgCreated ~ req.body:👉", req.body);
-
-  // const dataImg = await prisma.hinh_anh.findFirst({
-  //   where: {
-  //     hinh_id,
-  //   },
-  // });
-  // const dataCmt = await prisma.binh_luan.findFirst({
-  //   where: {
-  //     hinh_id,
-  //   },
-  // });
-  // const dataSavedImg = await prisma.luu_anh.findFirst({
-  //   where: {
-  //     hinh_id,
-  //   },
-  // });
-  // if (dataImg) {
-  //   await prisma.hinh_anh.deleteMany({
-  //     where: { hinh_id },
-  //   });
-  // } else if (dataImg && dataCmt) {
-  //   await prisma.$transaction([
-  //     prisma.hinh_anh.delete({ where: { hinh_id } }),
-  //     prisma.binh_luan.deleteMany({ where: { hinh_id } }),
-  //   ]);
-  // } else if (dataImg && dataSavedImg) {
-  //   await prisma.$transaction([
-  //     prisma.hinh_anh.delete({ where: { hinh_id } }),
-  //     prisma.luu_anh.delete({ where: { hinh_id } }),
-  //   ]);
-  // } else if (dataImg && dataSavedImg && dataCmt) {
-  //   await prisma.$transaction([
-  //     prisma.binh_luan.deleteMany({
-  //       where: { hinh_id },
-  //     }),
-  //     prisma.luu_anh.deleteMany({
-  //       where: { hinh_id },
-  //     }),
-  //     prisma.hinh_anh.delete({
-  //       where: { hinh_id },
-  //     }),
-  //   ]);
-  //   respsonseData(res, "Image Deleted", "", 200);
-  // } else {
-  //   respsonseData(res, "Image is not existed or have been deleted", "", 404);
-  // }
-  // } catch {
-  // respsonseData(res, "Unexpected Error", "", 500);
-  // }
+  try {
+    let { hinh_id } = req.body;
+    const dataImg = await prisma.hinh_anh.findFirst({
+      where: {
+        hinh_id,
+      },
+    });
+    if (dataImg) {
+      await prisma.$transaction([
+        prisma.binh_luan.deleteMany({
+          where: { hinh_id },
+        }),
+        prisma.luu_anh.deleteMany({
+          where: { hinh_id },
+        }),
+        prisma.hinh_anh.delete({
+          where: { hinh_id },
+        }),
+      ]);
+      respsonseData(res, "Image Deleted", "", 200);
+    } else {
+      respsonseData(res, "Image is not existed or have been deleted", "", 404);
+    }
+  } catch {
+    respsonseData(res, "Unexpected Error", "", 500);
+  }
 };
