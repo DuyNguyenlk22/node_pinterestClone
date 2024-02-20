@@ -112,3 +112,41 @@ export const addComment = async (req, res) => {
     respsonseData(res, "Unexpected Error", error, 500);
   }
 };
+
+export const saveImg = async (req, res) => {
+  try {
+    let { hinh_id } = req.body;
+    let { token } = req.headers;
+    let accessToken = decodeToken(token);
+    let data = await prisma.luu_anh.findFirst({
+      where: {
+        AND: {
+          hinh_id,
+          nguoi_dung_id: accessToken.nguoi_dung_id,
+        },
+      },
+    });
+    if (data) {
+      await prisma.luu_anh.deleteMany({
+        where: {
+          AND: {
+            hinh_id,
+            nguoi_dung_id: accessToken.nguoi_dung_id,
+          },
+        },
+      });
+      respsonseData(res, "UnSaved successfully", false, 200);
+    } else {
+      await prisma.luu_anh.create({
+        data: {
+          hinh_id,
+          nguoi_dung_id: accessToken.nguoi_dung_id,
+          ngay_luu: new Date().toISOString(),
+        },
+      });
+      respsonseData(res, "Saved successfully", true, 200);
+    }
+  } catch (error) {
+    respsonseData(res, "Unexpected Error", "", 500);
+  }
+};
