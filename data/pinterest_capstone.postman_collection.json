@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\" : \"test1234@gmail.com\",\r\n    \"mat_khau\" : \"123\"\r\n}",
+							"raw": "{\r\n    \"email\" : \"test2@gmail.com\",\r\n    \"mat_khau\" : \"1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,7 +96,14 @@
 					"name": "Get-List-Img",
 					"request": {
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "token",
+								"value": "123",
+								"type": "text",
+								"disabled": true
+							}
+						],
 						"url": {
 							"raw": "{{domain}}/get-all-img",
 							"host": [
@@ -122,13 +129,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/search-img/family",
+							"raw": "{{domain}}/search-img/food",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"search-img",
-								"family"
+								"food"
 							]
 						}
 					},
@@ -146,7 +153,7 @@
 						"header": [
 							{
 								"key": "token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNjcyNTQ1MDA1LCJpYXQiOjE3MDM2NzI1NDUsImV4cCI6MTcwMzY3MzE0NX0.wkVlpAUKDe4hpkMwEdrqJp2Nn9OP28b030znIc1Ri2o",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzA3OTgyNzM2NjcwLCJpYXQiOjE3MDc5ODI3MzYsImV4cCI6MTcwODg0NjczNn0.j_ZGOpCadeL-TZzuSAWe9CllHXZrVxlPDLRkbkm5iao",
 								"type": "text"
 							}
 						],
@@ -218,13 +225,13 @@
 						"header": [
 							{
 								"key": "token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNjc1MTYwNDAwLCJpYXQiOjE3MDM2NzUxNjAsImV4cCI6MTcwMzY3NTc2MH0.0hNBEy5PnVnESdNdwwTli_2XTMB3QSSd_ZBsrvTtqbE",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyNCwia2V5IjoxNzA4MzQ2Mzc1MzcwLCJpYXQiOjE3MDgzNDYzNzUsImV4cCI6MTcwOTIxMDM3NX0.98LufISLSRc97B9eMJbKqXCotYTConCV8q8eWke2jnI",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"hinh_id\" : 60\r\n}",
+							"raw": "{\r\n    \"hinh_id\" : 61\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -239,6 +246,39 @@
 							"path": [
 								"manage",
 								"delete-img-created"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyNCwia2V5IjoxNzA4Mzk3NTYwNTI0LCJpYXQiOjE3MDgzOTc1NjAsImV4cCI6MTcwOTI2MTU2MH0.L_R0ZgYPsu5EEUOtmjuNxfXoZBqo__c37_dxqoAOcss",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hinh_id\": 49\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/detail/isSaveImg",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"detail",
+								"isSaveImg"
 							]
 						}
 					},
@@ -286,14 +326,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{domain}}/detail/get-img-comment/58",
+							"raw": "{{domain}}/detail/get-img-comment/2",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"detail",
 								"get-img-comment",
-								"58"
+								"2"
 							]
 						}
 					},
@@ -306,19 +346,19 @@
 						"header": [
 							{
 								"key": "token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNTgyMzcwNDcwLCJpYXQiOjE3MDM1ODIzNzAsImV4cCI6MTcwMzU4Mjk3MH0.DxO6Ws4Sey2tNWVchJWrvUVH53WhSVYS9Rr334ngVoQ",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyOCwia2V5IjoxNzA2ODQxNDk0MDQ2LCJpYXQiOjE3MDY4NDE0OTQsImV4cCI6MTcwNjg0MjA5NH0.RZTkRhKQvJjk3WR74CATW_BBvthTnngEBA6w6Nq6Ipo",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "{{domain}}/detail/get-img-is-saved/10",
+							"raw": "{{domain}}/detail/get-img-is-saved/1",
 							"host": [
 								"{{domain}}"
 							],
 							"path": [
 								"detail",
 								"get-img-is-saved",
-								"10"
+								"1"
 							]
 						}
 					},
@@ -331,7 +371,7 @@
 						"header": [
 							{
 								"key": "token",
-								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNjcyMTE3OTYyLCJpYXQiOjE3MDM2NzIxMTcsImV4cCI6MTcwMzY3MjcxN30.j7NTRrt3i_MNZI0zrEhjhDGkQaWlE68Fv_MCfzFS7dk",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyOCwia2V5IjoxNzA2ODU2NjY0MzcxLCJpYXQiOjE3MDY4NTY2NjQsImV4cCI6MTcwNzcyMDY2NH0.-LE3r3m-J9VV5IdSTxNo_iAIlB0UYpr8xpmVcKbKam8",
 								"type": "text"
 							}
 						],
@@ -346,7 +386,8 @@
 								{
 									"key": "anh_dinh_kem",
 									"type": "file",
-									"src": "/C:/Users/nguye/OneDrive/Desktop/images/logoD.png"
+									"src": "/C:/Users/nguye/OneDrive/Desktop/images/logoD.png",
+									"disabled": true
 								},
 								{
 									"key": "hinh_id",
@@ -389,7 +430,7 @@
 							"formdata": [
 								{
 									"key": "ten_hinh",
-									"value": "a cat",
+									"value": "",
 									"type": "text"
 								},
 								{
@@ -400,7 +441,7 @@
 								{
 									"key": "duong_dan",
 									"type": "file",
-									"src": "/C:/Users/nguye/OneDrive/Desktop/images/logoD.png"
+									"src": "/C:/Users/nguye/OneDrive/Desktop/images/meo.jpg"
 								}
 							]
 						},

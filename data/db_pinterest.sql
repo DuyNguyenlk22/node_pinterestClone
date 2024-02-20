@@ -19,7 +19,7 @@ CREATE TABLE `binh_luan` (
   KEY `hinh_id` (`hinh_id`),
   CONSTRAINT `binh_luan_ibfk_1` FOREIGN KEY (`nguoi_dung_id`) REFERENCES `nguoi_dung` (`nguoi_dung_id`),
   CONSTRAINT `binh_luan_ibfk_2` FOREIGN KEY (`hinh_id`) REFERENCES `hinh_anh` (`hinh_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `hinh_anh` (
   `hinh_id` int NOT NULL AUTO_INCREMENT,
@@ -30,7 +30,7 @@ CREATE TABLE `hinh_anh` (
   PRIMARY KEY (`hinh_id`),
   KEY `nguoi_dung_id` (`nguoi_dung_id`),
   CONSTRAINT `hinh_anh_ibfk_1` FOREIGN KEY (`nguoi_dung_id`) REFERENCES `nguoi_dung` (`nguoi_dung_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `luu_anh` (
   `hinh_id` int NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE `nguoi_dung` (
   `anh_dai_dien` varchar(255) DEFAULT NULL,
   `refresh_token` text,
   PRIMARY KEY (`nguoi_dung_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `binh_luan` (`binh_luan_id`, `nguoi_dung_id`, `hinh_id`, `ngay_binh_luan`, `noi_dung`, `anh_dinh_kem`) VALUES
 (1, 1, 5, '2023-01-15', 'Great photo!', NULL);
@@ -102,7 +102,13 @@ INSERT INTO `binh_luan` (`binh_luan_id`, `nguoi_dung_id`, `hinh_id`, `ngay_binh_
 (43, 22, 1, '2023-12-25', '123', NULL),
 (44, 22, 1, '2023-12-25', '123', '/public/img/comment/1703521701405_05.jpg'),
 (46, 22, 1, '2023-12-26', '123', '1703552723209_meo.jpg'),
-(47, 22, 1, '2023-12-26', 'hjdsfkjsdkjfhkjdshfkjdshjkf', '/public/img/comment/1703579536911_05.jpg');
+(47, 22, 1, '2023-12-26', 'hjdsfkjsdkjfhkjdshfkjdshjkf', '/public/img/comment/1703579536911_05.jpg'),
+(51, 28, 1, '2024-02-05', '123', NULL),
+(69, 28, 1, '2024-02-05', 'con mèo', NULL),
+(70, 28, 64, '2024-02-05', 'giày đẹp quá', NULL),
+(71, 28, 22, '2024-02-17', 'Beautifullll !', NULL),
+(72, 24, 12, '2024-02-19', 'Đẹp thế nhờ', NULL),
+(73, 24, 31, '2024-02-20', 'nice cat', NULL);
 
 INSERT INTO `hinh_anh` (`hinh_id`, `ten_hinh`, `duong_dan`, `mo_ta`, `nguoi_dung_id`) VALUES
 (1, 'Nature1', 'https://i.pinimg.com/736x/c1/7d/fd/c17dfd78bd446e3da742212566411f95.jpg', 'Beautiful landscape with mountains and trees', 1);
@@ -157,10 +163,14 @@ INSERT INTO `hinh_anh` (`hinh_id`, `ten_hinh`, `duong_dan`, `mo_ta`, `nguoi_dung
 (47, 'Event4', 'https://i.pinimg.com/236x/c1/50/c5/c150c57e978180a5b3c2e551959764aa.jpg', 'Candid moments from a special event', 2),
 (48, 'SunrisePic', 'https://i.pinimg.com/474x/b1/92/ac/b192ac5dacdaa0114219fd2d4fd1bb4e.jpg', 'Serene sunrise by the lakeside', 17),
 (49, 'Travel5', 'https://i.pinimg.com/236x/d8/6e/42/d86e421495bdd9b3c40a5bb1d9712c98.jpg', 'Exploring diverse landscapes during travel', 5),
-(50, 'PetPic3', 'https://i.pinimg.com/236x/22/eb/3f/22eb3ff1b243e59ac361bab2b92ea32e.jpg', 'Playful pet enjoying a day outdoors', 10);
+(50, 'PetPic3', 'https://i.pinimg.com/236x/22/eb/3f/22eb3ff1b243e59ac361bab2b92ea32e.jpg', 'Playful pet enjoying a day outdoors', 10),
+(62, '', '1704463582796_meo.jpg', '2 cat sitting on w plants', 22),
+(63, 'ArtD', 'https://i.pinimg.com/originals/51/d1/c9/51d1c959140fe04c4e3813422ac7a727.jpg', 'Simpson chill', 28),
+(64, 'test hình giày', '1707104029169_Screenshot 2023-12-26 160848.png', 'test', 28),
+(65, 'test ảnh mèo', '1707104216646_meo.jpg', 'mèo ', 28);
 
 INSERT INTO `luu_anh` (`hinh_id`, `nguoi_dung_id`, `ngay_luu`) VALUES
-(1, 1, '2023-01-15');
+(1, 28, '2023-01-15');
 INSERT INTO `luu_anh` (`hinh_id`, `nguoi_dung_id`, `ngay_luu`) VALUES
 (2, 2, '2023-02-20');
 INSERT INTO `luu_anh` (`hinh_id`, `nguoi_dung_id`, `ngay_luu`) VALUES
@@ -177,6 +187,7 @@ INSERT INTO `luu_anh` (`hinh_id`, `nguoi_dung_id`, `ngay_luu`) VALUES
 (11, 11, '2023-11-14'),
 (12, 12, '2023-12-19'),
 (12, 22, '2023-12-26'),
+(12, 24, '2024-02-20'),
 (13, 13, '2024-01-02'),
 (14, 14, '2024-02-08'),
 (15, 15, '2024-03-14'),
@@ -188,6 +199,7 @@ INSERT INTO `luu_anh` (`hinh_id`, `nguoi_dung_id`, `ngay_luu`) VALUES
 (20, 22, '2023-12-14'),
 (21, 8, '2023-01-15'),
 (22, 14, '2023-02-20'),
+(22, 24, '2024-02-20'),
 (23, 3, '2023-03-25'),
 (24, 6, '2023-04-10'),
 (25, 11, '2023-05-05'),
@@ -208,6 +220,7 @@ INSERT INTO `luu_anh` (`hinh_id`, `nguoi_dung_id`, `ngay_luu`) VALUES
 (40, 20, '2024-08-10'),
 (41, 8, '2023-01-15'),
 (42, 14, '2023-02-20'),
+(42, 24, '2024-02-20'),
 (43, 3, '2023-03-25'),
 (44, 6, '2023-04-10'),
 (45, 11, '2023-05-05'),
@@ -215,7 +228,10 @@ INSERT INTO `luu_anh` (`hinh_id`, `nguoi_dung_id`, `ngay_luu`) VALUES
 (47, 2, '2023-07-18'),
 (48, 17, '2023-08-22'),
 (49, 5, '2023-09-30'),
-(50, 10, '2023-10-08');
+(50, 10, '2023-10-08'),
+(62, 22, '2024-01-05'),
+(64, 28, '2024-02-05'),
+(65, 28, '2024-02-05');
 
 INSERT INTO `nguoi_dung` (`nguoi_dung_id`, `email`, `mat_khau`, `ho_ten`, `tuoi`, `anh_dai_dien`, `refresh_token`) VALUES
 (1, 'john.doe@example.com', 'password123', 'John Doe', 25, 'https://i.pinimg.com/736x/c1/7d/fd/c17dfd78bd446e3da742212566411f95.jpg', NULL);
@@ -242,10 +258,12 @@ INSERT INTO `nguoi_dung` (`nguoi_dung_id`, `email`, `mat_khau`, `ho_ten`, `tuoi`
 (19, 'logan.allen@example.com', 'safepassword', 'Logan Allen', 25, 'https://i.pinimg.com/236x/97/41/5a/97415ad5948480a262aba83f64980a62.jpg', NULL),
 (20, 'chloe.hill@example.com', 'mysecretword', 'Chloe Hill', 28, 'https://i.pinimg.com/236x/35/38/97/353897e5e1601a2d1c3dd750cd311db5.jpg', NULL),
 (21, 'test123@gmail.com', '123', 'Tommy', 23, '', NULL),
-(22, 'test1234@gmail.com', '$2b$10$y8KqcqLSNmZuc.jnKqkc4uNdICqKA.vFwaH9iAfTewSTKK7qfFSkC', 'Duy', 18, '1703580419575_meo.jpg', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzAzNjc1MTYwNDAwLCJpYXQiOjE3MDM2NzUxNjAsImV4cCI6MTcwNTQwMzE2MH0.D_mxDdg7M_WGi9uFevJ5RSvHHx0kul_i7j1O5fvFvXw'),
-(23, 'test1@gmail.com', '$2b$10$ClE9cAhnMJNg7QpZUGJ5buaxSpdPe7jUO5M59awNn4jQDlLukY7fW', 'Grace', 25, '', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMywiaWF0IjoxNzAyNTQ3NTc1LCJleHAiOjE3MDQyNzU1NzV9.8n1VJ3ZHAaGuI2KT52ifwx90RZJx5goOLc4shZRavqQ'),
-(24, 'test2@gmail.com', '$2b$10$ARukOQ6as.RjIHmkezfcm.mFEEdg2KpVLiy75gYpN0N7ZyT3sxJ8C', 'Grace', 25, '', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyNCwia2V5IjoxNzAyODc3MTA5Njc0LCJpYXQiOjE3MDI4NzcxMDksImV4cCI6MTcwNDYwNTEwOX0.Ihx6OA8-uVEHB9fUL_Z1ddSXxdX_qocAiGrtZGXNsOA'),
-(25, 'test3@gmail.com', '$2b$10$vg6o6jRH5wzK9tami1pYseqzdEwv8vdiVXNFQzASpY0wDMiVOwDFu', NULL, NULL, '', NULL);
+(22, 'test1234@gmail.com', '$2b$10$HLj1cg7WtIXljkvArOwLyut8.qcsDaXdlUqfphIZAy45Rh3Rp7W7W', 'Duy', 18, '1708155392386_meo.jpg', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMiwia2V5IjoxNzA4MTU1NDU3NjgyLCJpYXQiOjE3MDgxNTU0NTcsImV4cCI6MTcwOTg4MzQ1N30.AtSvPqX1pxvQ4-jE8mqTDQCqNUGo4QcX4ap5BNlVHSY'),
+(23, 'test1@gmail.com', '$2b$10$6xLLgiy4YGPCGVnFu1ItduluJMVk8jY1W9djsCilAfU3H1IL4O5Pa', 'Grace', 26, '', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyMywia2V5IjoxNzA4MTU3MTE4NzIwLCJpYXQiOjE3MDgxNTcxMTgsImV4cCI6MTcwOTg4NTExOH0.lGWKt7j9VlyloCMvf-nQDhQZKQrF5sh5jv6QLnwxl2s'),
+(24, 'test2@gmail.com', '$2b$10$ARukOQ6as.RjIHmkezfcm.mFEEdg2KpVLiy75gYpN0N7ZyT3sxJ8C', 'Grace', 26, '1708330908533_05.jpg', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyNCwia2V5IjoxNzA4NDE3OTI3NzE0LCJpYXQiOjE3MDg0MTc5MjcsImV4cCI6MTcxMDE0NTkyN30.xWyKgD5Cra-Cqv3ZYSiRr2EkMAKI4oq70_mWTITGWZQ'),
+(25, 'test3@gmail.com', '$2b$10$vg6o6jRH5wzK9tami1pYseqzdEwv8vdiVXNFQzASpY0wDMiVOwDFu', NULL, NULL, '', NULL),
+(27, '123@gmail.com', '$2b$10$Al5VzlDOlT268C1TOxqDku.orpeiKponWbitKJ.oS10Sh1qQXZHNa', '123', 123, '', NULL),
+(28, 'duyTest@gmail.com', '$2b$10$tu.vf7a99NNRW2IOurAjtOFGDvH7BArRvpYpTblTF1Rufgh2Iai7q', 'DuyTester', 25, '1708147226187_logoD.png', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuZ3VvaV9kdW5nX2lkIjoyOCwia2V5IjoxNzA4MTQ0NjA3ODEzLCJpYXQiOjE3MDgxNDQ2MDcsImV4cCI6MTcwOTg3MjYwN30.s7IUWJ8yY7O8K488HDpGvpe63AnG16oUmidVD48b6Ow');
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
