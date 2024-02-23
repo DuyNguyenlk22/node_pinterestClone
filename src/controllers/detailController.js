@@ -58,9 +58,9 @@ export const getImageIsSaved = async (req, res) => {
     });
 
     if (!data) {
-      respsonseData(res, "Image have not saved yet", false, 404);
+      respsonseData(res, "UnSaved", false, 404);
     } else {
-      respsonseData(res, "Image saved", true, 200);
+      respsonseData(res, "Saved", true, 200);
     }
   } catch (error) {
     respsonseData(res, "Unexpected Error", "", 500);
